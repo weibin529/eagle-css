@@ -1,0 +1,307 @@
+$inputButtonSize: calc($INPUT_HEIGHT - 2);
+
+input::-ms-clear { display: none; }
+
+select,
+textarea,
+input[type="text"],
+input[type="search"], 
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="tel"],
+input[type="color"] {
+  height: $(INPUT_HEIGHT)px;
+  padding: 0 10px;
+  width: 200px;
+  color: $CLR_GREY_8;
+  background-color: $CLR_GREY_0;
+  border: 1px solid $CLR_GREY;
+  border-radius: $(INPUT_BORDER_RADIUS)px;
+  outline: none;
+  font-size: 1rem;
+  &:hover,
+  &:focus {
+    background-color: #fff;
+  }
+  &:focus {
+    text-align: left !important;
+    border-color: $CLR_PRIMARY;
+    box-shadow: inset 0 0 1px 1px $CLR_PRIMARY_3;
+  }
+  &[readonly]:focus {
+    border-color: $CLR_GREY;
+    box-shadow: inset 0 0 1px 1px $CLR_GREY_3;
+  }
+  &[disabled] {
+    background-color: $CLR_GREY_2;
+  }
+}
+
+input[input-shape="oval"] {
+  border-radius: calc($INPUT_HEIGHT / 2)px;
+}
+
+textarea {
+  padding: 10px;
+  min-height: 80px;
+  resize: none;
+}
+
+.input-box {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  
+  & > input {
+    width: 100%;
+    padding-right: calc(5 + $inputButtonSize)px;
+  }
+
+  & > .icon,
+  & > [toggle-type] {
+    &:not(a):not(.btn) {
+      color: rgba(0, 0, 0, .3);
+    }
+  }
+
+  & > .icon,
+  & > [toggle-type] {
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    right: 1px;
+    display: inline-block;
+    line-height: $(inputButtonSize)px;
+    text-align: center;
+    width: $(inputButtonSize)px;
+    height: auto;
+
+    &.btn {
+      width: $(inputButtonSize)px;
+    }
+
+    &:first-child {
+      left: 1px;
+      right: auto;
+
+      & + input {
+        padding-left: calc(5 + $inputButtonSize)px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  &[buttons="2"] {
+    & > input {
+      padding-right: calc(2 * $inputButtonSize + 5)px;
+      & + .icon,
+      & + [toggle-type] {
+        right: $(inputButtonSize)px;
+      }
+    }
+    & > .icon,
+    & > [toggle-type] {
+      &:first-child {
+        & + .icon,
+        & + [toggle-type] {
+          left: $(inputButtonSize)px;
+          right: auto;
+        }
+        & ~ input {
+          padding-left: calc(2 * $inputButtonSize + 5)px;
+          padding-right: 10px;
+        }
+        & + input {
+          padding-left: calc(5 + $inputButtonSize)px;
+          padding-right: calc(5 + $inputButtonSize)px;
+          & + .icon,
+          & + [toggle-type] {
+            right: 1px;
+          }
+        }
+      }
+    }
+  }
+
+  & > a:not(.btn) {
+    cursor: pointer;
+    color: rgba(0, 0, 0, .5);
+
+    &:hover {
+      background-color: rgba(0, 0, 0, .075);
+    }
+  }
+
+  &[readonly] {
+    & > input {
+      padding: 0 10px;
+    }
+    & > a,
+    & > button {
+      display: none;
+    }
+  }
+}
+
+input[border-none],
+.input-box[border-none] > input {
+  border: 0;
+}
+
+label {
+  color: $CLR_GREY_6;
+}
+
+[toggle-type] > label {
+  cursor: pointer;
+}
+
+.form-group {
+  padding: 10px;
+
+  & label {
+    position: relative;
+    display: inline-block;
+    height: 34px;
+    font-size: 0.92rem;
+    line-height: 34px;
+    white-space: nowrap;
+    padding-right: 8px;
+  }
+
+  &.important label:after {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width: 8px;
+    color: $CLR_DANGER;
+    content: "*";
+  }
+
+  &.invalid {
+    & label {
+      color: $CLR_DANGER;
+    }
+    & input, & textarea {
+      box-shadow: inset 0 0 1px 1px $CLR_DANGER;
+    }
+  }
+}
+
+.form-field {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  min-height: 40px;
+  overflow: visible;
+
+  &.inline {
+    display: inline-flex;
+  }
+
+  & > label {
+    position: relative;
+    flex: none;
+    display: inline-block;
+    line-height: 32px;
+    font-size: 0.857rem;
+    padding-right: 12px;
+    width: $(FORM_LABEL_WIDTH)px;
+    @mixin text-ellipsis;
+  }
+
+  & > input,
+  & > .input-box,
+  & > .field-value {
+    flex: auto;
+    width: 10px;
+  }
+
+  & > .field-value {
+    &:not(input) {
+      padding: 0 10px;
+      line-height: 32px;
+    }
+    &:not([multi-lines]) {
+      @mixin text-ellipsis;
+    }
+  }
+
+  & > .field-postfix {
+    flex: none;
+    padding-left: 10px;
+    line-height: 32px;
+    width: 80px;
+    font-size: 0.857rem;
+    color: $CLR_GREY_5;
+    @mixin text-ellipsis;
+  }
+
+  &[important] > label:after {
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    text-align: center;
+    width: 12px;
+    color: $CLR_DANGER;
+    content: "*";
+  }
+
+  &[invalid] {
+    & > label {
+      color: $CLR_DANGER;
+    }
+    & input,
+    & textarea {
+      border-color: $CLR_DANGER;
+      &:focus {
+        box-shadow: inset 0 0 1px 1px $CLR_DANGER_3;
+      }
+    }
+  }
+
+  &[toggle-type]:after {
+    flex: none;
+    align-items: center;
+    line-height: 32px;
+    width: 32px;
+    text-align: center;
+    color: $CLR_GREY_5;
+  }
+
+  &:not([readonly]) {
+    & > input[border-none],
+    & > .input-box[border-none] > input {
+      &:not(:focus) {
+        background: rgba(0, 0, 0, .03);
+      }
+    }
+  }
+}
+
+.form {
+  padding: 0 $(UNIT_SIZE)px;
+
+  &[label-align="right"] label {
+    text-align: right;
+  }
+  &[value-align="right"] {
+    input,
+    .field-value {
+      text-align: right;
+    }
+  }
+  &[grid-line] {
+    & > :not(:first-child) {
+      border-top: 1px solid rgba(0, 0, 0, .05);
+    }
+  }
+}

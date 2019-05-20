@@ -1,0 +1,48 @@
+{
+  "author": {
+    "name": "vbin"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "@ant-design/colors": "^3.1.0"
+  },
+  "deprecated": false,
+  "description": "set of styles for web application, code by postcss",
+  "devDependencies": {
+    "autoprefixer": "^9.5.1",
+    "postcss": "7.0.16",
+    "postcss-calc": "^7.0.1",
+    "postcss-clean": "^1.1.0",
+    "postcss-cli": "^6.1.2",
+    "postcss-conditionals": "^2.1.0",
+    "postcss-each": "^0.10.0",
+    "postcss-for": "^2.1.1",
+    "postcss-import": "^12.0.1",
+    "postcss-mix-color": "^0.1.6",
+    "postcss-mixins": "^6.2.1",
+    "postcss-nested": "^4.1.2",
+    "postcss-selector-not": "^4.0.0",
+    "postcss-simple-vars": "^5.0.2",
+    "postcss-unprefix": "^2.1.4"
+  },
+  "engines": {
+    "node": ">8.9.0"
+  },
+  "files": [
+    "src",
+    "dist",
+    "variables.js"
+  ],
+  "license": "MIT",
+  "module": "src/index.js",
+  "name": "eagle-css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weibin529/eagle-css.git"
+  },
+  "scripts": {
+    "build": "postcss src/index.pcss -o dist/sparrow-ui.css --env production",
+    "builddev": "postcss src/index.pcss -o dist/sparrow-ui.css -w --env development"
+  },
+  "version": "0.0.1"
+}

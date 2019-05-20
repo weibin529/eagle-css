@@ -1,0 +1,293 @@
+@import "./background.pcss";
+
+@define-mixin border {
+  border-width: 1px;
+  padding: 0 15px;
+}
+
+@define-mixin no_border {
+  border-width: 0;
+  padding: 0 16px;
+}
+
+.btn {
+  z-index: 1;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  height: $(INPUT_HEIGHT)px;
+  outline: none;
+  font-size: 1rem;
+  line-height: 20px;
+  background: $CLR_GREY_2;
+  color: $CLR_GREY_7;
+  border: 0 solid $CLR_GREY_5;
+  border-radius: $(INPUT_BORDER_RADIUS)px;
+  cursor: pointer;
+  @mixin border;
+
+  @if $BUTTON_SHADOW {
+    @mixin shadow1;
+  }
+
+  &[button-shape="oval"] {
+    border-radius: calc($INPUT_HEIGHT / 2)px;
+  }
+
+  &.btn-primary {
+    color: #fff;
+    border-color: $CLR_PRIMARY_3;
+    @if $BUTTON_GRADIENT_BACKGROUND {
+      background: $bg_primary_gradient;
+    } @else {
+      background: $bg_primary;
+    }
+
+    &.btn-outline,
+    &.btn-text {
+      color: $CLR_PRIMARY;
+    }
+
+    &[toggled] {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_primary_gradient_toggled;
+      } @else {
+        background: $bg_primary_toggled;
+      }
+    }
+  
+    &:hover {
+      color: #fff;
+      border-color: $CLR_PRIMARY_3;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_primary_gradient_hover;
+      } @else {
+        background: $bg_primary_hover;
+      }
+    }
+  }
+  
+  &.btn-secondary {
+    color: #fff;
+    border-color: $CLR_SECONDARY_3;
+    @if $BUTTON_GRADIENT_BACKGROUND {
+      background: $bg_secondary_gradient;
+    } @else {
+      background: $bg_secondary;
+    }
+
+    &.btn-outline,
+    &.btn-text {
+      color: $CLR_SECONDARY;
+    }
+
+    &[toggled] {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_secondary_GRADIEN_toggled;
+      } @else {
+        background: $bg_secondary_toggled;
+      }
+    }
+  
+    &:hover {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_secondary_gradient_hover;
+      } @else {
+        background: $bg_secondary_hover;
+      }
+    }
+  }
+
+  &.btn-success {
+    color: #fff;
+    border-color: $CLR_SUCCESS_3;
+    @if $BUTTON_GRADIENT_BACKGROUND {
+      background: $bg_success_gradient;
+    } @else {
+      background: $bg_success;
+    }
+
+    &.btn-outline,
+    &.btn-text {
+      color: $CLR_SUCCESS;
+    }
+
+    &[toggled] {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_success_GRADIEN_toggled;
+      } @else {
+        background: $bg_success_toggled;
+      }
+    }
+  
+    &:hover {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_success_gradient_hover;
+      } @else {
+        background: $bg_success_hover;
+      }
+    }
+  }
+
+  &.btn-danger {
+    color: #fff;
+    border-color: $CLR_DANGER_3;
+    @if $BUTTON_GRADIENT_BACKGROUND {
+      background: $bg_danger_gradient;
+    } @else {
+      background: $bg_danger;
+    }
+
+    &.btn-outline,
+    &.btn-text {
+      color: $CLR_DANGER;
+    }
+
+    &[toggled] {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_danger_gradient_toggled;
+      } @else {
+        background: $bg_danger_toggled;
+      }
+    }
+  
+    &:hover {
+      color: #fff;
+      @if $BUTTON_GRADIENT_BACKGROUND {
+        background: $bg_danger_gradient_hover;
+      } @else {
+        background: $bg_danger_hover;
+      }
+    }
+  }
+
+  &.btn-primary,
+  &.btn-secondary,
+  &.btn-success,
+  &.btn-danger {
+    @mixin no_border;
+  }
+
+  &.btn-outline {
+    color: $CLR_GREY_7;
+    background: #fff;
+    @mixin border;
+  }
+
+  &.btn-text {
+    color: $CLR_GREY_7;
+    background: transparent;
+    box-shadow: none;
+    &:not(:hover, [disabled], [toggled]) {
+      border-color: transparent;
+    }
+  }
+
+  &[toggled] {
+    color: $CLR_GREY_8;
+    /* border-color: $CLR_GREY_6; */
+    background: $CLR_GREY_4;
+  }
+
+  &:hover {
+    color: $CLR_GREY_8;
+    background: $CLR_GREY_1;
+    @if $BUTTON_SHADOW == 1 {
+      @mixin shadow2;
+    }
+  }
+
+  &[disabled],
+  &[disabled]:hover,
+  &.btn-primary[disabled],
+  &.btn-secondary[disabled],
+  &.btn-success[disabled],
+  &.btn-danger[disabled] {
+    cursor: not-allowed;
+    color: $CLR_GREY;
+    border-color: $CLR_GREY;
+    background: $CLR_GREY_2;
+    box-shadow: none;
+  }
+
+  &.icon,
+  &[toggle-type]:empty {
+    width: $(INPUT_HEIGHT)px;
+    padding: 0;
+
+    &:hover,
+    &[toggled] {
+      padding: 0;
+    }
+  }
+
+  &[toggle-type]:not(:empty)::after {
+    margin-left: 4px;
+  }
+
+  & > [toggle-type],
+  & > .icon {
+    margin: 0 4px;
+
+    & + .icon,
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.btn-group {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  border-radius: $(INPUT_BORDER_RADIUS)px;
+  @if $BUTTON_SHADOW == 1 {
+    @mixin shadow1;
+  }
+
+  &.block {
+    display: flex;
+  }
+  
+  & > .btn {
+    flex: 1 1 auto;
+    box-shadow: none;
+
+    &.icon,
+    &[toggle-type] {
+      flex: none;
+    }
+
+    &[toggled] {
+      z-index : 2;
+    }
+
+    &:hover:not([disabled]) {
+      z-index : 2;
+      @if $BUTTON_SHADOW == 1 {
+        @mixin shadow2;
+      }
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    @mixin border;
+  }
+}
