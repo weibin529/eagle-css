@@ -41,8 +41,8 @@
     "url": "https://github.com/weibin529/eagle-css.git"
   },
   "scripts": {
-    "build": "postcss src/index.pcss -o dist/sparrow-ui.css --env production",
-    "builddev": "postcss src/index.pcss -o dist/sparrow-ui.css -w --env development"
+    "build": "postcss src/index.pcss -o dist/eagle-ui.css --env production",
+    "builddev": "postcss src/index.pcss -o dist/eagle-ui.css -w --env development"
   },
   "version": "0.0.1"
 }
