@@ -44,5 +44,5 @@
     "build": "postcss src/index.pcss -o dist/eagle-ui.css --env production",
     "builddev": "postcss src/index.pcss -o dist/eagle-ui.css -w --env development"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
